@@ -1,0 +1,123 @@
+body{
+    margin:0px;
+    font-family: Arial,Helvetica,sans-serif;
+    background-color: #f8f8f8;
+}
+#header{
+    width: 100%;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #383737;
+    height: 60px;
+}
+#header .section{
+    display: inline-block;
+    padding:0px 15px;
+    border-right: solid 1px white;
+}#header .section a{
+    text-decoration: none;
+    color: white;
+}
+#header .section a:hover{
+    color: gainsboro;
+}
+#header .section:last-child{
+    border: 0px ;
+}
+.container{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 12px;
+}
+#formChronometer{
+    text-align: center;
+}
+input[type="text"]{
+    box-sizing: border-box;
+}
+#formChronometer input[type="text"]{
+    width: 388px;
+    padding: 10px;
+}
+#formChronometer .lines{
+    margin: 15px 0;
+}
+#formChronometer .box{
+    margin-top: 38px;
+    margin-bottom: 25px;
+}
+#formChronometer .box .clock{
+    color:#b9c1c7;
+    display: inline-block;
+    font-size: 45px;
+}
+#formChronometer input[type="button"]{
+    width: 107px;
+    border-radius: 5px;
+    background-color: #43A6E4;
+    color: white;
+    border: 0px;
+    margin: 0 5px;
+    height: 39px;
+    padding: 10px;
+    font-size: 15px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.18);
+}
+#formChronometer input[type="button"]:hover{
+    background-color: #2e6c92;
+}
+.list .row >div{
+    background-color: white;
+    padding: 10px;
+    display:inline-block;
+    margin: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.list .row h3{
+    margin: 0px;
+}
+.list .row >div:first-child{
+    width: 300px;
+}
+.list .row >div:last-child{
+    text-align: center;
+    width: 150px;
+}
+.list .row.summary{
+    color:#43A6E4;
+}
+@media  screen and (max-width : 767px)  {
+    #formChronometer input[type="text"]{
+        width: 100%;
+    }
+}
+@media  screen and (max-width : 411px)  {
+    .list .block{
+        font-size: 11px;
+    }
+    .list .row >div:first-child {
+        width: 155px;
+    }
+    .list .row >div:last-child {
+        width: 76px;
+    }
+}
+@media  screen and (min-width : 412px)  and (max-width:767px)   {
+    .list .block{
+        font-size: 14px;
+    }
+    .list .row >div:first-child {
+        width: 226px;
+    }
+    .list .row >div:last-child {
+        width: 102px;
+    }
+}
+

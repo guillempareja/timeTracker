@@ -1,0 +1,5 @@
+RewriteEngine On
+#The base has to be changed
+RewriteBase /php/timeTracker
+RewriteRule ^(chronometer)$ view/formChronometer.php
+RewriteRule ^(taskList)$ view/taskList.php
