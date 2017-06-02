@@ -1,5 +1,5 @@
 <?php require_once('header.php'); ?>
-<script src="view/js/chronometer.js?ver=1" type="text/javascript"></script>  
+<script src="view/js/chronometer.js" type="text/javascript"></script>
 <div class="container" id="chronometer">
     <h1>Time your task</h1>
     <form id="formChronometer">

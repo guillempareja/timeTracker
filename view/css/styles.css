@@ -6,9 +6,15 @@ body{
 #header{
     width: 100%;
     position: sticky;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
     display: flex;
+    -webkit-align-items: center; /* Safari 7.0+ */
     align-items: center;
-    justify-content: center;
+    -webkit-justify-content:center;
+    justify-content:center ;
     background-color: #383737;
     height: 60px;
 }
@@ -28,8 +34,15 @@ body{
 }
 .container{
     margin-top: 40px;
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
     display: flex;
-    flex-direction: column;
+    -webkit-direction:column;
+    -webkit-flex-direction: column; /* Safari 6.1+ */
+    flex-direction:column; 
+    -webkit-align-items: center; /* Safari 7.0+ */
     align-items: center;
     padding: 0px 12px;
 }
@@ -56,6 +69,7 @@ input[type="text"]{
     font-size: 45px;
 }
 #formChronometer input[type="button"]{
+    cursor: pointer;
     width: 107px;
     border-radius: 5px;
     background-color: #43A6E4;
@@ -92,6 +106,13 @@ input[type="text"]{
 }
 .list .row.summary{
     color:#43A6E4;
+}
+.noContent{
+    text-align: center;
+    color: #a9b0b5;    
+}
+.content ~ .noContent {
+    display: none;
 }
 @media  screen and (max-width : 767px)  {
     #formChronometer input[type="text"]{
