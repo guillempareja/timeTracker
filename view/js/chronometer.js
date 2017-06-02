@@ -1,16 +1,14 @@
 $(document).ready(function () {
     chronometer();
     function chronometer() {
-        var hundredths = 0;
-        var seconds = 0;
-        var minutes = 0;
-        var hours = 0;
-        var control;
-        var taskName
+        var minutesf = 0;
+        var hoursf = 0;
+        var taskName;
+        var worker = new Worker('view/js/workerChronometer.js');
         $(".chronometer .start").click(function (e) {
             taskName = $("input[name='taskName']").val().trim();
             if (taskName) {
-                control = setInterval(printChronometer, 10);
+                worker.postMessage({'cmd': 'start'});
                 $(this).prop("disabled", true);
                 $(".chronometer .stop").prop("disabled", false);
             } else {
@@ -18,13 +16,13 @@ $(document).ready(function () {
             }
         });
         $(".chronometer .stop").click(function (e) {
-            clearInterval(control);
+            worker.postMessage({'cmd': 'stop'});
             $(this).prop("disabled", true);
             $(".chronometer .start").prop("disabled", false);
             $("#formChronometer").submit();
         });
         $("#formChronometer").submit(function (e) {
-            var taskTime = parseInt(hours) * 60 + parseInt(minutes);
+            var taskTime = hoursf * 60 + minutesf;
             $.ajax({
                 type: "post",
                 url: 'controller/formChronometer.php',
@@ -36,51 +34,35 @@ $(document).ready(function () {
                         alert("Error");
                     }
                     $('#chronometer').load(document.URL + ' #chronometer >*', function () {
-                       chronometer();
+                        chronometer();
                     });
                 }
             });
             return false;
         });
-        function printChronometer() {
+        worker.addEventListener('message', function (e) {
+            var time = e.data;
+            console.log(time);
+            time = time.split(":");
+            var hundredths = time[3];
+            var seconds = time[2];
+            var minutes = time[1];
+            var hours = time[0];
             if (hundredths < 99) {
-                hundredths++;
-                if (hundredths < 10) {
-                    hundredths = "0" + hundredths
-                }
                 $(".chronometer .hundredths").html(hundredths)
             }
-            if (hundredths == 99) {
-                hundredths = -1;
-            }
             if (hundredths == 0) {
-                seconds++;
-                if (seconds < 10) {
-                    seconds = "0" + seconds
-                }
                 $(".chronometer .seconds").html(seconds)
             }
-            if (seconds == 59) {
-                seconds = -1;
-            }
             if ((hundredths == 0) && (seconds == 0)) {
-                minutes++;
-                if (minutes < 10) {
-                    minutes = "0" + minutes
-                }
+                minutesf = parseInt(minutes);
                 $(".chronometer .minutes").html(minutes)
             }
-            if (minutes == 59) {
-                minutes = -1;
-            }
             if ((hundredths == 0) && (seconds == 0) && (minutes == 0)) {
-                hours++;
-                if (hours < 10) {
-                    hours = "0" + hours
-                }
+                hoursf = parseInt(hours);
                 $(".chronometer .hours").html(hours)
             }
-        }
+        }, false);
     }
 
 });
